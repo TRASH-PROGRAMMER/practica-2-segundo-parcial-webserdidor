@@ -105,9 +105,121 @@
 
 ---
 
+## � Seguridad HMAC
+
+### 5. [gateway/comparador-service/src/webhook/HMAC_README.md](gateway/comparador-service/src/webhook/HMAC_README.md) ⭐⭐⭐
+**Guía completa de Generación y Validación de Firma HMAC**
+
+#### Contenido:
+- 🔑 **¿Cómo funciona HMAC?**
+  - Generación de firma (emisor)
+  - Validación de firma (receptor)
+  - Algoritmo HMAC-SHA256
+
+- 🏗️ **Arquitectura del sistema**
+  - HmacSignatureService
+  - WebhookController con validación
+  - HmacValidationMiddleware
+
+- 📦 **Instalación y configuración**
+  - Variables de entorno
+  - Integración en módulos
+  - Configuración de middleware
+
+- 🧪 **Testing completo**
+  - Tests con REST Client
+  - Comandos curl
+  - 10 casos de prueba
+
+- 🔒 **Características de seguridad**
+  - Protección contra timing attacks
+  - Prevención de replay attacks
+  - Idempotencia
+  - Rotación de claves
+
+- 🛡️ **Buenas prácticas**
+  - Para emisores de webhooks
+  - Para receptores de webhooks
+  - Monitoreo y logs
+
+- 🔧 **Solución de problemas**
+  - Diagnóstico de errores comunes
+  - Troubleshooting
+
+**Ideal para:** Implementar seguridad HMAC completa en webhooks.
+
+---
+
 ## 💻 Ejemplos de Código
 
-### 5. [webhook-consumer.service.example.ts](gateway/comparador-service/src/webhook/webhook-consumer.service.example.ts)
+### 6. Implementación HMAC
+
+#### 📄 [hmac-signature.service.ts](gateway/comparador-service/src/webhook/hmac-signature.service.ts)
+**Servicio principal de firma HMAC**
+- ✅ Generación de firma con timestamp
+- ✅ Validación con protección timing attack
+- ✅ Generación de headers HTTP
+- ✅ Rotación de claves
+- ✅ Health check
+
+#### 📄 [hmac-validation.middleware.ts](gateway/comparador-service/src/webhook/hmac-validation.middleware.ts)
+**Middleware de validación automática**
+- ✅ Validación obligatoria de firmas
+- ✅ Verificación de timestamps
+- ✅ Rechazo de firmas inválidas (401)
+- ✅ Modo opcional para desarrollo
+
+#### 📄 [webhook.controller.ts](gateway/comparador-service/src/webhook/webhook.controller.ts)
+**Controlador con validación HMAC**
+- ✅ Endpoints seguros (/webhook/prescripcion, /webhook/comparacion)
+- ✅ Validación de estructura y firma
+- ✅ Idempotencia
+- ✅ Endpoint de generación de firma (testing)
+- ✅ Health check
+
+#### 📄 [webhook.module.ts](gateway/comparador-service/src/webhook/webhook.module.ts)
+**Módulo NestJS completo**
+
+---
+
+### 7. Tests y Utilidades HMAC
+
+#### 📄 [webhook-hmac-tests.http](gateway/comparador-service/src/webhook/webhook-hmac-tests.http)
+**10 tests completos con REST Client**
+- ✅ Firma válida (200 OK)
+- ✅ Sin firma (401)
+- ✅ Firma inválida (401)
+- ✅ Timestamp expirado (401)
+- ✅ Evento duplicado (idempotencia)
+- ✅ Payload inválido (400)
+- ✅ Tipo de evento incorrecto (400)
+- ✅ Y más...
+
+#### 📄 [generate-webhook-secret.js](gateway/comparador-service/generate-webhook-secret.js)
+**Generador de claves secretas**
+```bash
+node generate-webhook-secret.js
+```
+Genera claves HMAC seguras de 256 bits
+
+#### 📄 [webhook-sender.example.js](gateway/comparador-service/webhook-sender.example.js)
+**Ejemplo completo de emisor**
+```bash
+node webhook-sender.example.js
+```
+- ✅ Generación de firma
+- ✅ Envío de webhooks
+- ✅ Reintentos exponenciales
+- ✅ Payloads de ejemplo
+
+#### 📄 [.env.example](gateway/comparador-service/.env.example)
+**Configuración de variables de entorno**
+
+---
+
+## 💻 Ejemplos de Webhooks (Legacy)
+
+### 8. [webhook-consumer.service.example.ts](gateway/comparador-service/src/webhook/webhook-consumer.service.example.ts)
 **Servicio de ejemplo para consumir webhooks**
 
 #### Características:
@@ -121,8 +233,8 @@
 
 ---
 
-### 6. [webhook.controller.example.ts](gateway/comparador-service/src/webhook/webhook.controller.example.ts)
-**Controlador HTTP para recibir webhooks**
+### 9. [webhook.controller.example.ts](gateway/comparador-service/src/webhook/webhook.controller.example.ts)
+**Controlador HTTP para recibir webhooks (ejemplo básico)**
 
 #### Endpoints:
 - `POST /webhook/prescripcion` - Recibe webhooks de prescripciones
@@ -140,7 +252,7 @@
 
 ---
 
-### 7. [webhook-tests.http](gateway/comparador-service/src/webhook/webhook-tests.http)
+### 10. [webhook-tests.http](gateway/comparador-service/src/webhook/webhook-tests.http)
 **Tests de webhooks con REST Client (VS Code)**
 
 #### Tests incluidos:
