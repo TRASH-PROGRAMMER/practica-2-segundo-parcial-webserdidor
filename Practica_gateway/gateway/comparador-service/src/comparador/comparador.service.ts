@@ -42,23 +42,24 @@ export class ComparadorService {
       return { error: 'Producto no encontrado' };
     }
 
-    // Simular comparación con farmacias
+    // Simular comparación con farmacias (precio base ficticio de 100)
+    const precioBase = 100; // Precio simulado ya que ProductoRead no tiene precio
     const comparaciones = [
       {
         farmacia: 'Farmacia Central',
-        precio: producto.precio_unitario * 0.95,
+        precio: precioBase * 0.95,
         stock_disponible: true,
         descuento: 5,
       },
       {
         farmacia: 'Farmacia del Ahorro',
-        precio: producto.precio_unitario * 1.05,
+        precio: precioBase * 1.05,
         stock_disponible: true,
         descuento: 0,
       },
       {
         farmacia: 'Farmacia San Pablo',
-        precio: producto.precio_unitario,
+        precio: precioBase,
         stock_disponible: false,
         descuento: 0,
       },

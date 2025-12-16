@@ -106,11 +106,10 @@ export class OptionalHmacValidationMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction) {
     const signature = req.headers['x-webhook-signature'] as string;
 
-    // Si no hay firma, solo advertir y continuar
+    // Si no hay firma, permitir (modo desarrollo)
     if (!signature) {
-      this.logger.warn('Webhook recibido sin firma (modo opcional)');
-      next();
-      return;
+      this.logger.warn('⚠️  Webhook sin firma (modo desarrollo)');
+      return next();
     }
 
     // Si hay firma, validarla
@@ -123,9 +122,10 @@ export class OptionalHmacValidationMiddleware implements NestMiddleware {
     );
 
     if (!isValid) {
-      this.logger.warn('Firma inválida pero permitida (modo opcional)');
-    } else {
-      this.logger.debug('Firma validada exitosamente');
+      throw new HttpException(
+        'Firma HMAC inválida',
+        HttpStatus.UNAUTHORIZED
+      );
     }
 
     next();

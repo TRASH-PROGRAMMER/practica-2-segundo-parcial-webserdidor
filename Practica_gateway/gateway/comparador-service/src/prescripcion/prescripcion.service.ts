@@ -34,12 +34,13 @@ export class PrescripcionService {
     // 2. Crear detalles de medicamentos
     const detalles = dto.medicamentos.map((med) =>
       this.detalleRepo.create({
-        id_prescripcion: prescripcionGuardada.id_prescripcion,
+        id_detalle_receta: prescripcionGuardada.id_prescripcion,
+        id_farmacia: 1, // Farmacia por defecto
         id_producto: med.id_producto,
-        nombre_comercial: med.nombre_comercial,
-        dosis: med.dosis,
-        frecuencia: med.frecuencia,
-        duracion_dias: med.duracion_dias,
+        precio_encontrado: 0, // Se actualizará después
+        distancia: 0,
+        fecha_consulta: new Date(),
+        fuente: 'prescripcion',
       }),
     );
 

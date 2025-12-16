@@ -10,6 +10,8 @@ import { ProductoEventsController } from './events/producto-events.controller';
 import { ComparadorController } from './comparador/comparador.controller';
 import { ComparadorService } from './comparador/comparador.service';
 import { PrescripcionModule } from './prescripcion/prescripcion.module';
+import { RabbitMQEventListenerModule } from './events/rabbitmq-event-listener.module';
+import { WebhookModule } from './webhook/webhook.module';
 
 @Module({
   imports: [
@@ -33,6 +35,8 @@ import { PrescripcionModule } from './prescripcion/prescripcion.module';
       },
     ]),
     PrescripcionModule,
+    RabbitMQEventListenerModule, // Módulo de listeners de RabbitMQ con observabilidad
+    WebhookModule, // Sistema de webhooks y observabilidad
   ],
   controllers: [ProductoEventsController, ComparadorController],
   providers: [ComparadorService],

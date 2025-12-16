@@ -16,7 +16,43 @@
 
 ---
 
-### 2. [EVENTOS_DE_NEGOCIO.md](EVENTOS_DE_NEGOCIO.md)
+### 2. [WEBHOOK_TRANSFORMATION_README.md](WEBHOOK_TRANSFORMATION_README.md) ⭐ NUEVO
+**Sistema de transformación de eventos a formato estándar de webhook**
+
+#### Contenido:
+- 🎯 **Objetivo y Arquitectura**
+  - Transformación de eventos internos a formato estándar
+  - Compatible con CloudEvents y REST webhooks
+  - Integración con múltiples sistemas externos
+
+- 📁 **Componentes Implementados**
+  - standard-webhook.dto.ts - DTOs y tipos
+  - event-transformer.service.ts - Servicio de transformación
+  - event-transformer.controller.ts - API REST
+  - Integración con RabbitMQ listeners
+
+- 🎨 **Formato Estándar**
+  - Estructura completa del webhook
+  - Metadata, payload, headers, context, links
+  - Headers HTTP estándar (W3C Trace Context)
+
+- 🚀 **Uso del Sistema**
+  - Transformación automática en listeners
+  - API REST endpoints (/events/transform)
+  - Ejemplos por tipo de evento
+  - Configuración personalizada
+
+- 📊 **Casos de Uso**
+  - Webhook HTTP externos
+  - Integración con Zapier/Make
+  - Event sourcing / Auditoría
+  - Stream processing (Kafka/Kinesis)
+
+**Ideal para:** Enviar eventos a sistemas externos con formato estándar compatible.
+
+---
+
+### 3. [EVENTOS_DE_NEGOCIO.md](EVENTOS_DE_NEGOCIO.md)
 **Especificación detallada de los eventos de negocio**
 
 #### Contenido:
@@ -45,7 +81,7 @@
 
 ---
 
-### 3. [DIAGRAMA_EVENTOS.md](DIAGRAMA_EVENTOS.md)
+### 4. [DIAGRAMA_EVENTOS.md](DIAGRAMA_EVENTOS.md)
 **Diagramas de arquitectura y flujos visuales**
 
 #### Contenido:
@@ -61,7 +97,7 @@
 
 ---
 
-### 4. [WEBHOOK_PAYLOADS.md](WEBHOOK_PAYLOADS.md) ⭐
+### 5. [WEBHOOK_PAYLOADS.md](WEBHOOK_PAYLOADS.md)
 **Estructura detallada de payloads de webhook**
 
 #### Contenido:

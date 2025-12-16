@@ -20,16 +20,20 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@nestjs/common": "^11.0.1",
-    "@nestjs/core": "^11.0.1",
+    "@nestjs/axios": "^4.0.1",
+    "@nestjs/common": "^11.1.9",
+    "@nestjs/core": "^11.1.9",
     "@nestjs/cqrs": "^10.0.0",
     "@nestjs/mapped-types": "^2.1.0",
     "@nestjs/microservices": "^11.0.0",
     "@nestjs/platform-express": "^11.0.1",
+    "@nestjs/schedule": "^6.1.0",
     "@nestjs/typeorm": "^11.0.0",
+    "@supabase/supabase-js": "^2.87.3",
+    "axios": "^1.13.2",
     "class-validator": "^0.14.3",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1",
+    "rxjs": "^7.8.2",
     "sqlite3": "^5.1.7",
     "typeorm": "^0.3.28"
   },
